@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Kathala Lokam"
+description = "A child-friendly Indian storytelling platform where children discover curated folk tales, listen or read along in their language, and save favourites, with separate parent and content-management experiences."
+version = "1.0.0"
+id = "artifacts/kathala-lokam"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24035
+
+[services.development]
+run = "pnpm --filter @workspace/kathala-lokam run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/kathala-lokam", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/kathala-lokam/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24035"
+BASE_PATH = "/"

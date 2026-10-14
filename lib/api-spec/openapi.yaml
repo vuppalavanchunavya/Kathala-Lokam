@@ -1,22 +1,22 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Kathala Lokam story and family experience API
 servers:
   - url: /api
     description: Base API path
 tags:
-  - name: health
-    description: Health operations
+  - name: stories
+  - name: categories
+  - name: family
+  - name: admin
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,13 +24,466 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /home:
+    get:
+      operationId: getHome
+      tags: [stories]
+      summary: Get featured and popular published stories
+      responses:
+        "200":
+          description: Home story selections
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HomeResponse"
+  /categories:
+    get:
+      operationId: listCategories
+      tags: [categories]
+      summary: List categories with published story counts
+      responses:
+        "200":
+          description: Published categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+  /stories:
+    get:
+      operationId: listStories
+      tags: [stories]
+      summary: Search and filter published stories
+      parameters:
+        - in: query
+          name: q
+          schema: { type: string }
+        - in: query
+          name: category
+          schema: { type: string }
+        - in: query
+          name: language
+          schema: { type: string, enum: [en, te, hi] }
+        - in: query
+          name: age
+          schema: { type: integer, minimum: 3, maximum: 12 }
+        - in: query
+          name: bedtime
+          schema: { type: boolean }
+        - in: query
+          name: sort
+          schema: { type: string, enum: [popular, recent, title], default: popular }
+      responses:
+        "200":
+          description: Published stories matching filters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StorySummary"
+  /stories/{slug}:
+    get:
+      operationId: getStory
+      tags: [stories]
+      summary: Get a published story and its published translations
+      parameters:
+        - in: path
+          name: slug
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Story detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoryDetail"
+        "404":
+          description: Story not found
+  /favorites:
+    get:
+      operationId: listFavorites
+      tags: [family]
+      summary: List favorite stories for a guest profile
+      parameters:
+        - in: query
+          name: guestId
+          required: true
+          schema: { type: string, minLength: 1, maxLength: 80 }
+      responses:
+        "200":
+          description: Guest favorites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StorySummary"
+    post:
+      operationId: addFavorite
+      tags: [family]
+      summary: Save a published story to guest favorites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FavoriteInput"
+      responses:
+        "204": { description: Favorite saved }
+        "404": { description: Story not found }
+    delete:
+      operationId: removeFavorite
+      tags: [family]
+      summary: Remove a story from guest favorites
+      parameters:
+        - in: query
+          name: guestId
+          required: true
+          schema: { type: string, minLength: 1, maxLength: 80 }
+        - in: query
+          name: storyId
+          required: true
+          schema: { type: integer, minimum: 1 }
+      responses:
+        "204": { description: Favorite removed }
+  /progress:
+    get:
+      operationId: listProgress
+      tags: [family]
+      summary: Get a guest's in-progress stories
+      parameters:
+        - in: query
+          name: guestId
+          required: true
+          schema: { type: string, minLength: 1, maxLength: 80 }
+      responses:
+        "200":
+          description: Listening progress records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Progress"
+    put:
+      operationId: saveProgress
+      tags: [family]
+      summary: Save a guest's listening progress
+      parameters:
+        - in: query
+          name: guestId
+          required: true
+          schema: { type: string, minLength: 1, maxLength: 80 }
+        - in: query
+          name: storyId
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProgressInput"
+      responses:
+        "200":
+          description: Saved progress
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Progress"
+  /admin/dashboard:
+    get:
+      operationId: getAdminDashboard
+      tags: [admin]
+      summary: Get content-management counts
+      responses:
+        "200":
+          description: Dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminDashboard"
+        "401": { description: Sign in required }
+        "403": { description: Administrator access required }
+  /admin/stories:
+    get:
+      operationId: listAdminStories
+      tags: [admin]
+      summary: List stories in all editorial states
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string, enum: [draft, review, published, archived] }
+      responses:
+        "200":
+          description: Managed stories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AdminStory"
+        "401": { description: Sign in required }
+        "403": { description: Administrator access required }
+    post:
+      operationId: createAdminStory
+      tags: [admin]
+      summary: Create a draft story
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StoryInput"
+      responses:
+        "201":
+          description: Created draft
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminStory"
+        "400": { description: Invalid story data }
+        "401": { description: Sign in required }
+        "403": { description: Administrator access required }
+  /admin/stories/{id}:
+    patch:
+      operationId: updateAdminStory
+      tags: [admin]
+      summary: Update a story and its English script
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StoryUpdate"
+      responses:
+        "200":
+          description: Updated story
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminStory"
+        "400": { description: Invalid story data }
+        "401": { description: Sign in required }
+        "403": { description: Administrator access required }
+        "404": { description: Story not found }
+  /admin/stories/{id}/publish:
+    post:
+      operationId: publishAdminStory
+      tags: [admin]
+      summary: Validate and publish a reviewed story
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      responses:
+        "200":
+          description: Published story
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminStory"
+        "400": { description: Publishing requirements are not met }
+        "401": { description: Sign in required }
+        "403": { description: Administrator access required }
+        "404": { description: Story not found }
+  /admin/stories/{id}/archive:
+    post:
+      operationId: archiveAdminStory
+      tags: [admin]
+      summary: Archive a story
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      responses:
+        "200":
+          description: Archived story
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminStory"
+        "401": { description: Sign in required }
+        "403": { description: Administrator access required }
+        "404": { description: Story not found }
 components:
   schemas:
     HealthStatus:
       type: object
       properties:
-        status:
-          type: string
-      required:
-        - status
-
+        status: { type: string }
+      required: [status]
+    Category:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        slug: { type: string }
+        description: { type: string }
+        coverUrl: { type: string }
+        storyCount: { type: integer }
+      required: [id, name, slug, description, coverUrl, storyCount]
+    StorySummary:
+      type: object
+      properties:
+        id: { type: integer }
+        slug: { type: string }
+        title: { type: string }
+        description: { type: string }
+        category: { type: string }
+        categorySlug: { type: string }
+        coverUrl: { type: string }
+        ageMin: { type: integer }
+        ageMax: { type: integer }
+        durationMinutes: { type: integer }
+        languages:
+          type: array
+          items: { type: string, enum: [en, te, hi] }
+        keywords:
+          type: array
+          items: { type: string }
+        moral: { type: ["string", "null"] }
+        featured: { type: boolean }
+        bedtime: { type: boolean }
+      required: [id, slug, title, description, category, categorySlug, coverUrl, ageMin, ageMax, durationMinutes, languages, keywords, moral, featured, bedtime]
+    StoryScene:
+      type: object
+      properties:
+        position: { type: integer }
+        text: { type: string }
+        illustrationUrl: { type: ["string", "null"] }
+        caption: { type: ["string", "null"] }
+      required: [position, text, illustrationUrl, caption]
+    Translation:
+      type: object
+      properties:
+        languageCode: { type: string, enum: [en, te, hi] }
+        title: { type: string }
+        script: { type: string }
+        reviewed: { type: boolean }
+        audioUrl: { type: ["string", "null"] }
+        scenes:
+          type: array
+          items: { $ref: "#/components/schemas/StoryScene" }
+      required: [languageCode, title, script, reviewed, audioUrl, scenes]
+    StoryDetail:
+      allOf:
+        - $ref: "#/components/schemas/StorySummary"
+        - type: object
+          properties:
+            source: { type: string }
+            licence: { type: string }
+            translations:
+              type: array
+              items: { $ref: "#/components/schemas/Translation" }
+          required: [source, licence, translations]
+    HomeResponse:
+      type: object
+      properties:
+        featured: { oneOf: [{ $ref: "#/components/schemas/StorySummary" }, { type: "null" }] }
+        popular:
+          type: array
+          items: { $ref: "#/components/schemas/StorySummary" }
+        recent:
+          type: array
+          items: { $ref: "#/components/schemas/StorySummary" }
+      required: [featured, popular, recent]
+    Progress:
+      type: object
+      properties:
+        storyId: { type: integer }
+        languageCode: { type: string, enum: [en, te, hi] }
+        playbackPosition: { type: integer }
+        durationSeconds: { type: integer }
+        completed: { type: boolean }
+        updatedAt: { type: string, format: date-time }
+      required: [storyId, languageCode, playbackPosition, durationSeconds, completed, updatedAt]
+    ProgressInput:
+      type: object
+      properties:
+        languageCode: { type: string, enum: [en, te, hi] }
+        playbackPosition: { type: integer, minimum: 0 }
+        durationSeconds: { type: integer, minimum: 0 }
+        completed: { type: boolean }
+      required: [languageCode, playbackPosition, durationSeconds, completed]
+    FavoriteInput:
+      type: object
+      properties:
+        guestId: { type: string, minLength: 1, maxLength: 80 }
+        storyId: { type: integer, minimum: 1 }
+      required: [guestId, storyId]
+    AdminDashboard:
+      type: object
+      properties:
+        totalStories: { type: integer }
+        publishedStories: { type: integer }
+        draftStories: { type: integer }
+        reviewStories: { type: integer }
+        missingNarration: { type: integer }
+        missingTranslations: { type: integer }
+      required: [totalStories, publishedStories, draftStories, reviewStories, missingNarration, missingTranslations]
+    AdminStory:
+      type: object
+      properties:
+        id: { type: integer }
+        slug: { type: string }
+        title: { type: string }
+        categoryId: { type: integer }
+        category: { type: string }
+        description: { type: string }
+        script: { type: string }
+        ageMin: { type: integer }
+        ageMax: { type: integer }
+        durationMinutes: { type: integer }
+        coverUrl: { type: string }
+        moral: { type: ["string", "null"] }
+        source: { type: string }
+        licence: { type: string }
+        status: { type: string, enum: [draft, review, published, archived] }
+        languages:
+          type: array
+          items: { type: string, enum: [en, te, hi] }
+      required: [id, slug, title, categoryId, category, description, script, ageMin, ageMax, durationMinutes, coverUrl, moral, source, licence, status, languages]
+    StoryInput:
+      type: object
+      properties:
+        slug: { type: string, minLength: 2 }
+        title: { type: string, minLength: 2 }
+        categoryId: { type: integer, minimum: 1 }
+        description: { type: string, minLength: 10 }
+        script: { type: string, minLength: 100 }
+        ageMin: { type: integer, minimum: 3, maximum: 12 }
+        ageMax: { type: integer, minimum: 3, maximum: 12 }
+        durationMinutes: { type: integer, minimum: 1 }
+        coverUrl: { type: string }
+        moral: { type: ["string", "null"] }
+        source: { type: string, minLength: 2 }
+        licence: { type: string, minLength: 2 }
+      required: [slug, title, categoryId, description, script, ageMin, ageMax, durationMinutes, coverUrl, source, licence]
+    StoryUpdate:
+      type: object
+      properties:
+        slug: { type: string, minLength: 2 }
+        title: { type: string, minLength: 2 }
+        categoryId: { type: integer, minimum: 1 }
+        description: { type: string, minLength: 10 }
+        script: { type: string, minLength: 100 }
+        ageMin: { type: integer, minimum: 3, maximum: 12 }
+        ageMax: { type: integer, minimum: 3, maximum: 12 }
+        durationMinutes: { type: integer, minimum: 1 }
+        coverUrl: { type: string }
+        moral: { type: ["string", "null"] }
+        source: { type: string, minLength: 2 }
+        licence: { type: string, minLength: 2 }
+      minProperties: 1
+      required: []

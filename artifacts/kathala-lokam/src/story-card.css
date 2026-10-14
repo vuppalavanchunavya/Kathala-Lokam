@@ -1,0 +1,47 @@
+.story-card {
+  position: relative;
+}
+
+.card-heart {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgba(73, 54, 107, 0.12);
+  border-radius: 50%;
+  background: rgba(255, 249, 239, 0.94);
+  color: #745c87;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(49, 38, 65, 0.12);
+  transition: transform 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.card-heart:hover:not(:disabled) {
+  transform: scale(1.07);
+  background: #fff;
+}
+
+.card-heart.saved {
+  color: #b74f77;
+  background: #fff0f4;
+}
+
+.card-heart:focus-visible {
+  outline: 3px solid #49366b;
+  outline-offset: 3px;
+}
+
+.card-heart:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-heart {
+    transition: none;
+  }
+}

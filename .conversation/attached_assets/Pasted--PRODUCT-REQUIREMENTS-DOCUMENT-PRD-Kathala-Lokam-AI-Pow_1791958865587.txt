@@ -1,0 +1,1356 @@
+# PRODUCT REQUIREMENTS DOCUMENT (PRD)
+# Kathala Lokam — AI-Powered Indian Children's Storytelling Platform
+
+**Document Version:** 1.0  
+**Product Type:** Responsive Web Application  
+**Target Platform:** Web, Mobile, and Tablet  
+**Development Platform:** Replit  
+**Primary Audience:** Children aged 3–12 years and their parents  
+**Product Category:** Children's Entertainment, Education, and Cultural Storytelling
+
+---
+
+# 1. Product Overview
+
+## 1.1 Product Name
+
+**Kathala Lokam**
+
+The name represents a world of stories, imagination, and childhood memories.
+
+## 1.2 Product Vision
+
+Kathala Lokam is a child-friendly digital storytelling platform designed to preserve traditional Indian stories and make them enjoyable for today's generation of children.
+
+In the past, grandparents told children stories such as Akbar and Birbal, Pedarasi Peddamma Kathalu, Vikram and Betal, Panchatantra, and Tenali Raman. These stories were also popular through books and television programmes.
+
+Kathala Lokam aims to bring these stories back to children through a beautiful digital platform featuring ready-made stories, cute illustrations, expressive narration, multiple Indian languages, and an engaging listening experience.
+
+The application should recreate the feeling of sitting beside a grandparent and listening to an interesting story, while using modern technology to make the experience more accessible.
+
+## 1.3 Problem Statement
+
+Children increasingly consume digital entertainment, but traditional Indian folk tales are not always easily discoverable in a single, child-friendly application with consistent narration and language support.
+
+Parents may also find it difficult to identify suitable, age-appropriate storytelling content in their preferred Indian languages.
+
+Kathala Lokam addresses these problems by providing a central library of curated Indian stories that children can browse and listen to independently, with parental guidance where appropriate.
+
+## 1.4 Product Goals
+
+1. Preserve and promote traditional Indian childhood stories.
+2. Make stories easy for children to discover and listen to.
+3. Provide cute, expressive, natural-sounding narration.
+4. Support Telugu, English, and Hindi initially.
+5. Make storytelling enjoyable through colourful illustrations and optional animated videos.
+6. Provide a safe, age-appropriate experience.
+7. Allow authorised administrators to manage the entire story library.
+8. Make content reusable across languages and presentation formats.
+9. Provide a foundation for future expansion to additional Indian languages and stories.
+
+## 1.5 Core Product Principle
+
+**Children are story listeners, not story creators.**
+
+The application must contain ready-made stories that have already been added, reviewed, and published by an administrator.
+
+Children must be able to:
+
+- Open the app.
+- Browse story categories.
+- Select a story.
+- Choose an available language.
+- Listen to narration.
+- View illustrations or an available animated video.
+- Read the story if they prefer.
+- Save favourite stories.
+- Continue listening or select another story.
+
+Do not expose story-writing prompts, AI story generators, video-creation forms, or technical configuration options in the children's interface.
+
+---
+
+# 2. Target Users and Roles
+
+## 2.1 Children
+
+**Age range:** 3–12 years.
+
+Needs:
+- Simple navigation.
+- Large, attractive buttons.
+- Cute characters and illustrations.
+- Easy-to-understand story titles.
+- Immediate access to narration.
+- Clear playback controls.
+- Stories appropriate to their age.
+- Minimal typing and configuration.
+
+## 2.2 Parents and Guardians
+
+Needs:
+- Appropriate content for their children.
+- Language preferences.
+- Age-based content recommendations.
+- Optional screen-time settings.
+- A way to manage favourites and review listening history.
+- Confidence that content is suitable for children.
+
+## 2.3 Administrator or Content Manager
+
+Needs:
+- Add, edit, and organise stories.
+- Manage story scripts and translations.
+- Upload illustrations, narration audio, and videos.
+- Review content before publishing.
+- Manage story categories and metadata.
+- Track missing audio, incomplete translations, and failed media processing.
+
+Administrators must have a separate, authenticated management interface.
+
+---
+
+# 3. Product Scope
+
+## 3.1 MVP — Initial Release
+
+The first release must include:
+
+- Cute, responsive homepage.
+- Pre-populated story library.
+- Story categories and search.
+- Story detail pages.
+- Narration audio player.
+- Illustrated story presentation.
+- Telugu, English, and Hindi support where content is available.
+- Read-along mode.
+- Favourites.
+- Continue Listening.
+- Parent settings.
+- Admin story-management dashboard.
+- Database integration.
+- Persistent storage for media.
+- Basic content moderation and publishing workflow.
+- Sample content sufficient to test the complete experience.
+
+Start with at least 30 curated stories across the main categories. Each published story must have a complete script and the media required for its advertised functionality.
+
+## 3.2 Future Enhancements
+
+These are not required to complete the initial MVP:
+
+- Full AI-generated animated videos for every story.
+- Advanced character animation and lip synchronisation.
+- Personalised recommendations.
+- Offline downloads.
+- Dedicated Android and iOS applications.
+- Additional Indian languages.
+- Story quizzes and learning games.
+- School and classroom accounts.
+- Subscription plans.
+- Advanced listening analytics.
+
+Do not delay the MVP by attempting to implement every future enhancement at once.
+
+---
+
+# 4. Information Architecture
+
+The application should have two distinct experiences: the children's storytelling interface and the administrator's content-management interface.
+
+## 4.1 Children's Application
+
+Main navigation:
+
+1. Home
+2. Explore Stories
+3. Categories
+4. My Favourites
+5. Continue Listening
+6. Parent Corner
+
+On mobile, use a simplified navigation bar or menu with large touch targets.
+
+The children's experience must not display administrative controls.
+
+## 4.2 Administrator Application
+
+Main navigation:
+
+1. Dashboard Overview
+2. Story Library
+3. Categories
+4. Languages and Translations
+5. Narration and Audio
+6. Illustrations and Videos
+7. Publishing and Review
+8. Media Processing Status
+9. Application Settings
+
+All administrative routes must be protected by server-side authentication and authorisation.
+
+---
+
+# 5. UI/UX and Visual Design Requirements
+
+## 5.1 Design Direction
+
+The application should feel like entering a magical Indian children's storybook.
+
+It must not look like a corporate website, a generic educational portal, or a developer dashboard.
+
+Visual inspiration should come from:
+- Illustrated children's picture books.
+- Colourful Indian folk tales.
+- Magical story kingdoms.
+- Cute animated animals.
+- Friendly cartoon characters.
+- Playful children's entertainment applications.
+
+The design should feel polished, consistent, welcoming, and delightful.
+
+## 5.2 Colour Palette
+
+Use the following initial design tokens.
+
+| Colour | Hex Code | Intended Use |
+|---|---|---|
+| Candy Pink | #FFB6D5 | Highlights and selected cards |
+| Sky Blue | #AEE6FF | Background sections |
+| Sunshine Yellow | #FFE680 | Featured content |
+| Mint Green | #B9F3D0 | Nature and animal stories |
+| Lavender | #DCCBFF | Story player and magical sections |
+| Peach | #FFD0B5 | Warm illustrations and accents |
+| Cream | #FFF9EF | Main background |
+| Deep Purple | #49366B | Headings and important controls |
+| Chocolate Brown | #49362D | Story text |
+| White | #FFFFFF | Cards and content surfaces |
+
+Use the colours consistently. Avoid making every component a different bright colour.
+
+Maintain readable contrast between text and backgrounds.
+
+## 5.3 Typography
+
+Use rounded, child-friendly typography for headings and interface elements.
+
+Suggested fonts:
+- Nunito for general interface text.
+- Baloo 2 for playful headings.
+- A legible font with proper Telugu, Hindi, and other Indian-script support for multilingual content.
+
+Use a reliable font fallback when a font does not support a language.
+
+Long story text must remain comfortable to read. Avoid decorative fonts for paragraphs.
+
+## 5.4 Brand Identity and Mascot
+
+Create a brand identity for Kathala Lokam featuring:
+
+- A magical open storybook.
+- A sparkling star.
+- A friendly moon or cloud.
+- Rounded, playful lettering.
+
+Introduce a mascot named **Katha Buddy**.
+
+Katha Buddy should be a cute illustrated storybook character with expressive eyes, tiny hands, and a friendly smile.
+
+The mascot may appear on the homepage, empty states, loading screens, and story-completion screens.
+
+Example messages:
+
+- "Hello, Little Story Explorer!"
+- "Which story shall we listen to today?"
+- "Let's discover a magical tale!"
+- "Yay! You finished your story!"
+
+Do not make the mascot obstruct the main content or playback controls.
+
+## 5.5 Layout and Interaction
+
+Use:
+- Rounded cards.
+- Soft shadows.
+- Large story-cover illustrations.
+- Spacious layouts.
+- Gentle transitions.
+- Clear active and selected states.
+- Large buttons.
+- Responsive carousels.
+- Visible loading, empty, and error states.
+
+Animations should be lightweight and optional where possible. Respect reduced-motion preferences.
+
+---
+
+# 6. Functional Requirements: Children's Homepage
+
+## 6.1 Welcome Section
+
+Display the following welcome content:
+
+**Heading:** "Hello, Little Story Explorer!"
+
+**Description:** "Come, let's listen to a magical story!"
+
+Primary action: "Let's Explore Stories"
+
+Include a colourful illustrated environment featuring clouds, stars, rainbows, flowers, a storybook, and friendly Indian story characters.
+
+The homepage should communicate the purpose of the application immediately.
+
+## 6.2 Homepage Sections
+
+Display these sections in the following general order:
+
+1. Welcome and featured story.
+2. Continue Listening.
+3. Popular Stories.
+4. Akbar and Birbal.
+5. Pedarasi Peddamma Kathalu.
+6. Vikram and Betal.
+7. Panchatantra.
+8. Tenali Raman.
+9. Grandma's Favourite Stories.
+10. Bedtime Stories.
+11. Indian Folk Tales.
+12. My Favourite Stories.
+13. Recently Added Stories.
+
+Sections may use horizontal carousels where appropriate.
+
+Hide sections that have no published content instead of displaying empty placeholders.
+
+## 6.3 Featured Story
+
+The featured story must contain:
+- Story cover.
+- Title.
+- Short description.
+- Recommended age.
+- Duration.
+- Available languages.
+- Watch or Listen button.
+
+The featured story must be selected from published content in the database.
+
+## 6.4 Continue Listening
+
+Show previously started stories when listening progress is available.
+
+Each card should display:
+- Cover illustration.
+- Story title.
+- Listening progress.
+- Resume button.
+
+Selecting Resume should continue from the saved position when the relevant audio or video supports seeking.
+
+For a child without an account, progress may be stored locally on the device, subject to the application's privacy design.
+
+## 6.5 Story Categories
+
+Each category must contain:
+- Name.
+- Description.
+- Cover illustration.
+- Published story count, where useful.
+- Story cards.
+
+Categories should be visually differentiated using illustrations and coordinated pastel colours.
+
+---
+
+# 7. Story Library and Content Requirements
+
+## 7.1 Initial Categories
+
+The initial library must contain the following categories.
+
+### A. Akbar and Birbal
+
+Include traditional tales about:
+- Clever answers.
+- Royal court puzzles.
+- Humorous situations.
+- Wisdom and fairness.
+- Creative problem-solving.
+
+### B. Pedarasi Peddamma Kathalu
+
+Include traditional Telugu folk tales featuring:
+- Village life.
+- Magical adventures.
+- Clever characters.
+- Folklore-inspired situations.
+- Imaginative storytelling.
+
+Verify the source and cultural context of each story. Do not invent a historical origin for newly written material.
+
+### C. Vikram and Betal
+
+Include:
+- Mysteries.
+- Riddles.
+- Moral dilemmas.
+- Thought-provoking questions.
+- Adventure stories.
+
+Adapt frightening or violent content for children without misrepresenting the source.
+
+### D. Panchatantra
+
+Include:
+- Animal fables.
+- Clever rabbits.
+- Lions and other forest animals.
+- Friendship and cooperation.
+- Wisdom and decision-making.
+
+### E. Tenali Raman
+
+Include:
+- Funny stories.
+- Clever tricks.
+- Courtroom puzzles.
+- Humorous problem-solving.
+- Wisdom through humour.
+
+### F. Indian Folk Tales
+
+Include traditional stories from different Indian regions and cultures.
+
+### G. Moral Stories
+
+Include stories about:
+- Honesty.
+- Kindness.
+- Friendship.
+- Courage.
+- Sharing.
+- Patience.
+- Responsibility.
+
+### H. Bedtime Stories
+
+Include gentle, calming stories suitable for listening before sleep.
+
+## 7.2 Initial Content Quantity
+
+Seed the application with at least 30 complete story entries.
+
+Distribute the stories across the initial categories so that each main category has meaningful content.
+
+Each story must have:
+- A unique identifier.
+- A title.
+- A category.
+- A description.
+- A complete story script.
+- A recommended age range.
+- An estimated duration.
+- A moral or lesson, when appropriate.
+- Source and licensing information.
+- A publication status.
+
+Do not fill the library with repeated stories, incomplete scripts, fake media links, or placeholder titles.
+
+Use original retellings of verified traditional folklore or other appropriately licensed material.
+
+Do not copy copyrighted television scripts, modern book translations, music, artwork, or recordings without permission.
+
+## 7.3 Story Content Status
+
+Each story should have one of the following statuses:
+
+- Draft.
+- In Review.
+- Published.
+- Archived.
+
+Only Published stories should appear in the children's application.
+
+Archived stories must not be discoverable through search or category listings.
+
+---
+
+# 8. Story Discovery and Search
+
+## 8.1 Story Cards
+
+Every published story card should display:
+- Story cover.
+- Story title.
+- Category.
+- Estimated duration.
+- Language availability.
+- Play button.
+- Favourite control.
+
+Use large illustrations and minimal text.
+
+## 8.2 Search
+
+Allow searching by:
+- Story title.
+- Character name.
+- Category.
+- Keywords.
+- Moral or lesson.
+
+Search should return published stories only.
+
+Display a friendly empty state if no results are found.
+
+Example:
+
+"Oops! We couldn't find that story. Let's try another adventure!"
+
+## 8.3 Filters
+
+Support:
+- Category.
+- Language.
+- Recommended age.
+- Duration.
+- Bedtime stories.
+- Recently added.
+- Favourites.
+
+Filters must work with actual database content.
+
+---
+
+# 9. Story Detail and Playback
+
+## 9.1 Story Detail Page
+
+When a child selects a story, open a dedicated page containing:
+- Story cover.
+- Title.
+- Short description.
+- Recommended age.
+- Duration.
+- Language options.
+- Listen to Story.
+- Read Story.
+- Favourite button.
+- Related stories.
+
+The interface should make it obvious how to start listening.
+
+## 9.2 Narration Player
+
+The narration player is a core product feature.
+
+Required controls:
+- Play.
+- Pause.
+- Resume.
+- Restart.
+- Volume.
+- Seek, where supported.
+- Playback speed, with a simple default and child-friendly options.
+- Narration language selection.
+- Subtitle or text display.
+- Previous Story.
+- Next Story.
+
+Use a large, rounded player with an attractive illustrated background.
+
+Persist listening progress where feasible.
+
+## 9.3 Narration Behaviour
+
+When the child selects Listen to Story:
+
+1. Load the selected story and language.
+2. Retrieve the matching narration audio.
+3. Display the story cover or relevant illustration.
+4. Start playback after the child's explicit action.
+5. Display synchronised text or scene illustrations when available.
+6. Save listening progress.
+7. Display a completion screen when the story finishes.
+
+If audio is missing, do not show a fake playing state. Display a friendly error and provide the Read Story option if the script exists.
+
+## 9.4 Story Completion
+
+When a story finishes, display:
+
+"Yay! You finished a story!"
+
+Provide:
+- Listen Again.
+- Discover Another Story.
+- Read the Story.
+- View the Moral, where applicable.
+
+A small, optional confetti or star animation may appear.
+
+Do not autoplay another story without an appropriate user or parent setting.
+
+---
+
+# 10. Expressive Story Narration
+
+## 10.1 Narration Goals
+
+Narration should sound warm, friendly, expressive, and engaging.
+
+The desired experience is similar to a grandparent telling a story to a child.
+
+Avoid monotone, overly fast, robotic narration.
+
+The narrator should convey:
+- Curiosity.
+- Excitement.
+- Surprise.
+- Humour.
+- Gentle suspense.
+- Warmth.
+- Calmness for bedtime stories.
+
+## 10.2 Character Voices
+
+Where supported by the chosen narration provider, use distinct, appropriate voices for different characters.
+
+For example:
+- King Akbar: warm, dignified, and friendly.
+- Birbal: clever, playful, and confident.
+- A narrator: expressive and easy to understand.
+- Animal characters: gentle, playful, and recognisable through delivery.
+
+Do not force multiple voices when doing so would make narration unnatural or inconsistent.
+
+## 10.3 Audio Generation Strategy
+
+Narration should be prepared in advance for published stories.
+
+Recommended workflow:
+
+1. An administrator adds the story script.
+2. The administrator selects the narration language.
+3. The system generates narration audio using a configured text-to-speech provider.
+4. The administrator previews the result.
+5. The administrator approves the audio.
+6. The approved audio is stored.
+7. The story is published with the correct audio reference.
+
+Regenerate audio only when necessary.
+
+Do not generate a new narration request every time a child presses Play.
+
+## 10.4 Audio Metadata
+
+Store:
+- Story ID.
+- Language.
+- Voice identifier.
+- Audio file location.
+- Duration.
+- Generation status.
+- Approval status.
+- Creation timestamp.
+- Version.
+
+The system must not confuse different languages or versions of a story.
+
+---
+
+# 11. Language Support
+
+## 11.1 Initial Languages
+
+The MVP should support:
+- Telugu.
+- English.
+- Hindi.
+
+Structure the content system to support Tamil, Kannada, Malayalam, Marathi, Bengali, and other languages in future releases.
+
+## 11.2 Language Behaviour
+
+Language availability must be managed per story.
+
+For example, if a story has Telugu and English narration but no Hindi narration, the interface should display only the available options.
+
+When the child changes languages:
+- Load the matching script.
+- Load the matching narration.
+- Load language-specific subtitles when available.
+- Update the interface language if the application supports that preference.
+
+Do not simply translate the title while playing narration in a different language.
+
+## 11.3 Translation Management
+
+An administrator must be able to:
+- Add a translation.
+- Edit the translated script.
+- Mark a translation as reviewed.
+- Attach its narration audio.
+- Publish the language version independently.
+
+Translations must preserve the original meaning and cultural context.
+
+---
+
+# 12. Illustrated Storytelling and Video Support
+
+## 12.1 MVP Presentation Mode
+
+The application must support narrated illustrated stories.
+
+Where full video is unavailable, display a sequence of story illustrations accompanied by narration.
+
+Each scene should have:
+- Illustration.
+- Narration segment or timing reference, where supported.
+- Optional caption.
+- Scene order.
+
+Illustrations must relate to the story and should not be unrelated decorative images.
+
+## 12.2 Optional Animation
+
+The data model must support a completed animated video associated with a story and language.
+
+If a video is available:
+- Show the Watch Story option.
+- Play the actual video.
+- Provide playback controls.
+- Display subtitles when available.
+
+If no video is available:
+- Offer the illustrated narration experience.
+
+Clearly distinguish between a fully animated video and an illustrated slideshow.
+
+## 12.3 Video Generation
+
+Full AI animation is not a mandatory MVP dependency.
+
+When implemented, video production should be an administrator-managed background process.
+
+The process may include:
+1. Preparing a scene plan from the approved script.
+2. Generating or selecting approved illustrations.
+3. Generating animation clips through a configured provider.
+4. Adding narration and sound.
+5. Adding subtitles.
+6. Combining scenes into a playable video.
+7. Reviewing and publishing the result.
+
+Do not claim that a video has been generated until a valid video file exists.
+
+If the animation provider is unavailable, the story must remain accessible through its available audio and illustrations.
+
+---
+
+# 13. Read-Along Mode
+
+Every story with a published script should offer a Read Story option.
+
+Features:
+- Complete story text.
+- Readable font sizes.
+- Adjustable text size.
+- Paragraph spacing.
+- Relevant illustrations.
+- Page or section navigation where appropriate.
+- Narration playback when available.
+- Text highlighting synchronised with narration when supported.
+
+The design should resemble a beautiful children's picture book.
+
+Use a cream background, readable text, soft decorative elements, and large illustrations.
+
+Avoid long, dense text blocks on mobile screens.
+
+---
+
+# 14. Favourites and Listening Progress
+
+## 14.1 Favourites
+
+Children should be able to save stories using a heart icon.
+
+The application should:
+- Add a story to favourites.
+- Remove a story from favourites.
+- Display favourite stories in one section.
+- Preserve favourites according to the selected storage or account model.
+
+Provide a friendly empty state if there are no favourites.
+
+## 14.2 Listening Progress
+
+Track:
+- Story ID.
+- Last playback position.
+- Completion status.
+- Last listening date, if required.
+- Optional language version.
+
+The application should allow a child to resume a partially listened-to story.
+
+For guest users, local device storage may be used where appropriate.
+
+For authenticated users, store progress securely against the relevant account.
+
+Do not collect unnecessary behavioural data from children.
+
+---
+
+# 15. Parent Corner
+
+Parent Corner must be visually separate from the children's main browsing experience.
+
+It should support:
+- Preferred language.
+- Child age range or age band.
+- Content preferences.
+- Screen-time preferences.
+- Listening history, where enabled.
+- Favourites management.
+- Basic privacy settings.
+
+Protect sensitive settings with an age-appropriate parent verification mechanism.
+
+Do not treat a simple button labelled "I'm a parent" as sufficient protection for sensitive controls.
+
+The MVP does not require collecting a child's full name, precise location, school, or other unnecessary personal information.
+
+---
+
+# 16. Admin Dashboard
+
+## 16.1 Overview
+
+Display:
+- Total stories.
+- Published stories.
+- Draft stories.
+- Stories awaiting review.
+- Missing narration.
+- Missing translations.
+- Failed media processing jobs.
+
+Counts must be based on actual database records.
+
+## 16.2 Story Management
+
+Administrators must be able to:
+- Create a story.
+- Edit a story.
+- Preview a story.
+- Assign a category.
+- Set recommended age.
+- Set estimated duration.
+- Add the moral or lesson.
+- Attach source information.
+- Save a draft.
+- Submit for review.
+- Publish.
+- Archive.
+
+Validate required fields before publication.
+
+## 16.3 Media Management
+
+Support uploading and associating:
+- Story cover images.
+- Scene illustrations.
+- Narration audio.
+- Completed videos.
+- Subtitle files, where applicable.
+
+Validate file type and size.
+
+Store media in suitable persistent storage. Do not depend on temporary local files for production content.
+
+## 16.4 Publishing Validation
+
+Before publishing, verify that:
+- The title exists.
+- The category is valid.
+- The script is complete.
+- Required age and content metadata exist.
+- The selected language version is valid.
+- The advertised listening mode has its required audio or media.
+- Required illustrations are available for illustrated playback.
+- Content has passed review.
+
+A story must not advertise an unavailable language or media format.
+
+---
+
+# 17. Technical Architecture
+
+## 17.1 General Requirements
+
+Use a maintainable full-stack architecture supported by Replit.
+
+Inspect the existing project before selecting or replacing frameworks.
+
+If no suitable stack exists, use a modern React and TypeScript frontend with a backend framework and database that work reliably on Replit.
+
+Keep the application modular.
+
+Separate:
+- Frontend components.
+- Backend API routes.
+- Authentication and authorisation.
+- Story and category services.
+- Media storage.
+- Narration integration.
+- Video-processing integration.
+- Database access.
+
+## 17.2 Database
+
+Use a relational database for structured application data.
+
+The database should support the following entities.
+
+### Users
+- ID.
+- Email or authentication identifier, when applicable.
+- Role.
+- Created timestamp.
+- Account status.
+
+### Stories
+- ID.
+- Slug.
+- Category ID.
+- Recommended age range.
+- Estimated duration.
+- Cover image reference.
+- Moral or lesson.
+- Source information.
+- Content licence information.
+- Publication status.
+- Featured status.
+- Created timestamp.
+- Updated timestamp.
+
+### Story Translations
+- ID.
+- Story ID.
+- Language code.
+- Translated title.
+- Short description.
+- Full script.
+- Translation review status.
+- Publication status.
+
+### Narration Assets
+- ID.
+- Story translation ID.
+- Voice identifier.
+- Audio file reference.
+- Duration.
+- Generation status.
+- Approval status.
+- Version.
+
+### Story Scenes
+- ID.
+- Story translation ID.
+- Scene order.
+- Scene text.
+- Illustration reference.
+- Optional audio timing metadata.
+
+### Story Videos
+- ID.
+- Story ID.
+- Language code.
+- Video file reference.
+- Subtitle reference.
+- Duration.
+- Video format.
+- Publication status.
+
+### Categories
+- ID.
+- Name.
+- Slug.
+- Description.
+- Cover illustration.
+- Display order.
+- Publication status.
+
+### Favourites
+- ID.
+- User or guest identifier, depending on the storage model.
+- Story ID.
+- Created timestamp.
+
+### Listening Progress
+- ID.
+- User or guest identifier.
+- Story ID.
+- Language code.
+- Playback position.
+- Completion status.
+- Last updated timestamp.
+
+### Media Jobs
+- ID.
+- Job type.
+- Related story or translation ID.
+- Status.
+- Error summary.
+- Retry count.
+- Created timestamp.
+- Updated timestamp.
+
+Use appropriate relationships, indexes, constraints, and migrations. Avoid storing large media files directly in relational database records.
+
+## 17.3 Media Storage
+
+Store large audio, image, and video files in suitable persistent object storage.
+
+The database should store their references and associated metadata.
+
+Use access-controlled URLs or appropriate signed URLs for private media.
+
+Published children's stories may use public or controlled delivery according to the chosen deployment model.
+
+## 17.4 External Providers
+
+Keep external services configurable.
+
+Potential integrations include:
+- A text-to-speech service for expressive narration.
+- An optional image-generation provider.
+- An optional AI video-generation provider.
+- A media-rendering process for combining illustrations, audio, and subtitles.
+
+Do not hardcode provider-specific logic throughout the application.
+
+All credentials must be stored in server-side environment secrets.
+
+Do not expose provider API keys in browser code, client responses, or logs.
+
+## 17.5 Background Processing
+
+Long-running audio or video generation must not block normal user requests.
+
+Use an appropriate background-job mechanism for configured media-generation workflows.
+
+Track:
+- Pending.
+- Processing.
+- Completed.
+- Failed.
+
+Provide retry behaviour and meaningful error messages.
+
+The children's app should continue serving already published stories if a provider is unavailable.
+
+---
+
+# 18. API and Backend Requirements
+
+Implement backend endpoints appropriate to the selected framework.
+
+The API should support the following operations.
+
+### Public Story APIs
+- Retrieve published stories.
+- Retrieve story details.
+- Retrieve categories.
+- Search published stories.
+- Retrieve available languages.
+- Retrieve approved narration metadata.
+- Retrieve available illustrations and videos.
+
+### User APIs
+- Manage favourites.
+- Retrieve and update listening progress.
+- Retrieve user preferences.
+- Update permitted parent settings.
+
+### Admin APIs
+- Create and edit stories.
+- Manage translations.
+- Upload media.
+- Manage categories.
+- Preview and review content.
+- Publish and archive stories.
+- Retrieve media-processing status.
+
+Enforce authorisation on the server for every administrative operation.
+
+Do not rely only on hiding buttons in the frontend to protect privileged functionality.
+
+Validate all incoming data and return consistent error responses.
+
+---
+
+# 19. Security, Privacy, and Child Safety
+
+The product is intended for children, so safety and privacy are essential.
+
+Requirements:
+- Collect the minimum personal information necessary.
+- Secure administrative access.
+- Validate uploads.
+- Restrict allowed file types and sizes.
+- Protect against common web vulnerabilities.
+- Store secrets securely.
+- Avoid exposing internal errors to users.
+- Keep external links away from the primary children's interface.
+- Review scripts and generated media before publication.
+- Use age-appropriate language and visuals.
+- Adapt frightening traditional stories for younger audiences.
+- Respect cultural and regional differences.
+- Use properly licensed or original content.
+- Provide privacy-conscious defaults.
+
+Where the application is made available to children, assess the privacy and parental-consent requirements applicable to the intended jurisdictions before launch.
+
+Do not implement unnecessary targeted advertising or invasive tracking.
+
+---
+
+# 20. Performance and Reliability
+
+The app must remain usable on common mobile devices and typical network connections.
+
+Requirements:
+- Optimise illustrations.
+- Lazy-load nonessential images.
+- Use efficient media delivery.
+- Avoid unnecessary API requests.
+- Load story metadata before large media when appropriate.
+- Show a loading state while media is retrieved.
+- Retry transient network errors where safe.
+- Provide a fallback when optional video content is unavailable.
+- Keep browsing functional when narration or video services fail.
+- Avoid re-downloading media unnecessarily.
+- Ensure database queries are efficient.
+
+Pre-generated narration should be the default for published stories to reduce waiting time and external API usage.
+
+---
+
+# 21. Accessibility and Responsive Design
+
+Support:
+- Desktop browsers.
+- Tablets.
+- Mobile browsers.
+
+Requirements:
+- Responsive layouts.
+- Large touch targets.
+- Readable font sizes.
+- Keyboard-accessible controls.
+- Accessible button labels.
+- Visible focus states.
+- Sufficient colour contrast.
+- Reduced-motion support.
+- Proper subtitles when available.
+- Correct rendering of Telugu, Hindi, and English text.
+
+The layout must be designed for mobile, not simply reduced from desktop.
+
+Ensure the story player fits the screen and that playback controls do not overlap content.
+
+---
+
+# 22. Analytics and Operational Monitoring
+
+The MVP should use only the minimum operational metrics necessary.
+
+Administrators may need to monitor:
+- Published story count.
+- Missing narration assets.
+- Failed media jobs.
+- Media storage errors.
+- Playback failures.
+- Application errors.
+
+Do not introduce invasive child profiling.
+
+Any optional product analytics must be privacy-conscious and appropriate for the intended audience.
+
+---
+
+# 23. Error Handling and Empty States
+
+Provide friendly messages for common situations.
+
+Examples:
+
+**No stories in a category:**
+
+"More magical stories are coming soon!"
+
+**Narration unavailable:**
+
+"Oops! This story's voice is resting. You can read the story while we fix it."
+
+**Network problem:**
+
+"We couldn't load your story. Please try again."
+
+**No favourites:**
+
+"Your favourite stories will appear here. Tap the little heart on a story you love!"
+
+**Media processing failure in the admin dashboard:**
+
+Show the actual job status, a safe error summary, and a retry option when supported.
+
+Do not display fake success messages or pretend unavailable media is playable.
+
+---
+
+# 24. Acceptance Criteria
+
+The MVP is considered complete only when the following requirements have been implemented and tested.
+
+## Homepage
+- The homepage displays the intended cute storybook design.
+- Published categories and stories load from the database.
+- Story cards open the correct story.
+- Empty categories are handled correctly.
+- Mobile layouts do not overflow horizontally.
+
+## Story Library
+- At least 30 complete, curated story entries are available.
+- Categories and search work.
+- Only published stories are visible to children.
+- Story titles and descriptions match the selected story.
+- Available languages are accurately displayed.
+
+## Narration
+- Selecting Listen plays the correct audio.
+- Play, pause, resume, restart, and volume controls work.
+- The correct language's audio is used.
+- Missing audio produces a clear error.
+- Narration is not unnecessarily regenerated on every playback.
+- Playback progress is preserved where supported.
+
+## Illustrated Stories and Videos
+- Story illustrations correspond to the selected story.
+- Available videos play correctly.
+- Illustrated narration works when a completed video is unavailable.
+- The application does not misrepresent a slideshow as a full animation.
+- Broken media references are detected and handled.
+
+## Favourites and Progress
+- Favourites can be added and removed.
+- Saved favourites appear in the correct section.
+- Listening progress can be resumed when supported.
+- Guest and authenticated storage behave according to the selected design.
+
+## Admin Dashboard
+- Administrators can add, edit, review, publish, and archive stories.
+- Translations and media assets can be managed.
+- Unauthorised users cannot access administrative operations.
+- Published content is validated.
+- Media job failures are visible to administrators.
+
+## Safety and Quality
+- Child-facing content is age-appropriate.
+- No unnecessary personal information is collected.
+- Secrets are not exposed in frontend code.
+- Buttons and links work as intended.
+- Loading, empty, and error states are implemented.
+- The application works on desktop, tablet, and mobile.
+
+---
+
+# 25. Development Plan
+
+Implement the project in the following phases.
+
+## Phase 1 — Application Foundation
+- Set up the project architecture.
+- Build the cute visual design system.
+- Implement the homepage and navigation.
+- Create the database schema.
+- Add story categories and initial sample content.
+- Implement story browsing, search, and detail pages.
+
+## Phase 2 — Narration and Reading
+- Implement the audio player.
+- Integrate the selected narration provider.
+- Add prepared narration assets.
+- Implement language-specific scripts and audio.
+- Build the read-along mode.
+- Add favourites and listening progress.
+
+## Phase 3 — Media and Administration
+- Build the admin dashboard.
+- Implement story and category management.
+- Add translation management.
+- Add illustration, audio, and video uploads.
+- Implement content review and publishing.
+- Add media processing status and error handling.
+
+## Phase 4 — Quality and Release
+- Test all core user journeys.
+- Verify access control.
+- Test responsive layouts.
+- Validate media and narration.
+- Fix functional and UI defects.
+- Document setup and deployment.
+
+Full AI-generated animation should be introduced as a separate enhancement after the core experience works reliably.
+
+---
+
+# 26. Definition of Done
+
+The project is complete when:
+
+1. A child can open the homepage and immediately understand how to discover a story.
+2. The child can browse the available traditional Indian story categories.
+3. The child can select a story and listen to its prepared narration.
+4. The child can read the story if they prefer.
+5. The app displays the correct illustrations, language, and playback controls.
+6. The child can save favourites and resume supported playback.
+7. The administrator can manage stories, translations, narration, and media.
+8. Only approved, published stories appear in the children's interface.
+9. The app works on desktop, tablet, and mobile.
+10. All advertised functionality is connected to working implementations rather than static placeholders.
+11. Errors and unavailable media are handled clearly.
+12. The application has been tested against the acceptance criteria.
+
+---
+
+# 27. Instructions to Replit Agent
+
+Treat this document as the authoritative product specification.
+
+Before implementing changes:
+
+1. Inspect the existing repository and understand its framework, routes, components, database, authentication, and current functionality.
+2. Identify what already exists and what needs to be built.
+3. Propose an implementation plan that follows this PRD.
+4. Preserve working functionality wherever possible.
+5. Implement the project incrementally, starting with the core browsing and narration experience.
+6. Create database-backed content and meaningful sample stories.
+7. Use real media assets and working playback rather than decorative placeholders.
+8. Keep provider credentials and privileged operations on the server.
+9. Test the acceptance criteria after each major phase.
+10. Document any external API credentials or services required.
+
+Do not attempt to implement every advanced feature in one unverified step.
+
+Do not build a children's story-creation interface.
+
+Do not claim that a feature is complete if it is only represented by a static screen.
+
+The highest priorities are the cute child-friendly experience, a reliable ready-made story library, expressive narration, and simple story playback.
+
+The final product should feel like a magical digital home for Indian childhood stories, helping children discover the tales that previous generations grew up listening to.
