@@ -35,15 +35,22 @@ app.use(
 app.use(CLERK_PROXY_PATH, clerkProxyMiddleware());
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(
-  clerkMiddleware((req) => ({
-    publishableKey: publishableKeyFromHost(
-      getClerkProxyHost(req) ?? "",
-      process.env.CLERK_PUBLISHABLE_KEY,
-    ),
-  })),
-);
+if (process.env.CLERK_SECRET_KEY) {
+  app.use(
+    clerkMiddleware((req) => ({
+      publishableKey: publishableKeyFromHost(
+        getClerkProxyHost(req) ?? "",
+        process.env.CLERK_PUBLISHABLE_KEY,
+      ),
+    })),
+  );
+} else {
+  logger.warn("CLERK_SECRET_KEY is not set. Running in development mode without Clerk authentication.");
+  app.use((req, _res, next) => {
+    (req as any).auth = { userId: null, sessionClaims: {} };
+    next();
+  });
+}
 
 app.use("/api", router);
 

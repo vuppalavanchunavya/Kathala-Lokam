@@ -1,0 +1,72 @@
+{
+ "voice": "en-US-AnaNeural",
+ "duration": 65.76,
+ "sentences": [
+  {
+   "scene": 1,
+   "text": "On a chilly evening, Emperor Akbar and Birbal walked beside a lake.",
+   "start": 0.05,
+   "end": 6.3
+  },
+  {
+   "scene": 1,
+   "text": "Akbar wondered aloud, “Would anyone stay in this cold water all night for a reward?",
+   "start": 6.3,
+   "end": 13.07
+  },
+  {
+   "scene": 1,
+   "text": "A poor man nearby heard him and said he would try, because his family needed the money.",
+   "start": 13.07,
+   "end": 19.99
+  },
+  {
+   "scene": 2,
+   "text": "The man stood in the lake through the night.",
+   "start": 20.09,
+   "end": 23.48
+  },
+  {
+   "scene": 2,
+   "text": "In the morning Akbar learned that a distant lamp had helped him keep going.",
+   "start": 23.48,
+   "end": 29.14
+  },
+  {
+   "scene": 2,
+   "text": "Then the lamp warmed him,” the emperor said, and refused the reward.",
+   "start": 29.14,
+   "end": 35.33
+  },
+  {
+   "scene": 3,
+   "text": "Birbal left court and did not return for several days.",
+   "start": 35.43,
+   "end": 40.36
+  },
+  {
+   "scene": 3,
+   "text": "When Akbar visited, he found a pot of rice hanging high above a tiny fire.",
+   "start": 40.36,
+   "end": 46.9
+  },
+  {
+   "scene": 3,
+   "text": "It will never cook,” Akbar said.",
+   "start": 46.9,
+   "end": 50.36
+  },
+  {
+   "scene": 3,
+   "text": "Birbal replied, “If that faraway lamp can warm a lake, surely this little fire can cook rice up here.",
+   "start": 50.36,
+   "end": 59.18
+  },
+  {
+   "scene": 3,
+   "text": "Akbar smiled, understood the lesson, and gave the man his promised reward.",
+   "start": 59.18,
+   "end": 65.7
+  }
+ ]
+}

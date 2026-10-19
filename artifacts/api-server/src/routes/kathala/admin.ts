@@ -25,8 +25,18 @@ import {
 
 const router: IRouter = Router();
 
+function getSafeAuth(req: Parameters<RequestHandler>[0]): { userId?: string | null; sessionClaims?: any } {
+  const reqAuth = (req as any).auth;
+  if (reqAuth) return reqAuth;
+  try {
+    return getAuth(req);
+  } catch {
+    return { userId: null };
+  }
+}
+
 function hasAdminRole(req: Parameters<RequestHandler>[0]): boolean {
-  const auth = getAuth(req);
+  const auth = getSafeAuth(req);
   if (!auth.userId) return false;
   const claims = auth.sessionClaims as
     | {
@@ -47,7 +57,7 @@ function hasAdminRole(req: Parameters<RequestHandler>[0]): boolean {
 }
 
 const requireAdmin: RequestHandler = (req, res, next) => {
-  const auth = getAuth(req);
+  const auth = getSafeAuth(req);
   if (!auth.userId) {
     res.status(401).json({ error: "Sign in to continue." });
     return;
